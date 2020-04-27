@@ -1,0 +1,20 @@
+apply plugin:'com.jfrog.bintray'
+apply plugin:'maven'
+
+def nexusUrl = 'http://api.huhuwang.work:8054'
+def nexusUsername = 'devloper'
+def nexusPassword = '12345678'
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "${nexusUrl}/repository/public/") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+            snapshotRepository(url: "${nexusUrl}/repository/snapshots") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+        }
+    }
+}
